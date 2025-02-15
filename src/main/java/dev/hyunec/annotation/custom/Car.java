@@ -3,6 +3,8 @@ package dev.hyunec.annotation.custom;
 import dev.hyunec.annotation.custom.annotation.ModelDescriptionPrint;
 import dev.hyunec.annotation.custom.annotation.ModelDescriptionPrints;
 
+import java.time.LocalDate;
+
 public class Car {
     private final String model;
     private final Integer year;
@@ -36,6 +38,14 @@ public class Car {
 
     public Integer getYear() {
         return year;
+    }
+
+    private boolean isNeedMaintenance() {
+        return LocalDate.of(year, 1, 1).isBefore(LocalDate.now().minusYears(5));
+    }
+
+    public boolean isNeedChangeOil() {
+        return LocalDate.of(year, 1, 1).isBefore(LocalDate.now().minusYears(1));
     }
 
     @Override
